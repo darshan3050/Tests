@@ -5,9 +5,14 @@ import (
 )
 
 // YOUR CODE HERE:
-func divide(divider float64,divident int)float64{
-return divider/float64(divident)
+func divide(divider float64, divident int) (float64, error) {
+	if divident == 0 {
+		fmt.Errorf("can't divide by 0")
+	} else {
+		return divider / float64(divident), nil
+	}
 }
+
 // Declare a "divide" function such that the call in the
 // "main" function will compile and return 2.8.
 // "divide" should accept two float64 values as parameters,
@@ -22,6 +27,9 @@ return divider/float64(divident)
 // to update the code in "main" to handle the error value.
 
 func main() {
-	quotient := divide(5.6, 2)
-	fmt.Printf("%0.2f\n", quotient) // => 2.80
+	quotient, err := divide(5.6, 2)
+	if err == nil {
+		fmt.Printf("%0.2f\n", quotient) // => 2.80
+	}
+
 }
